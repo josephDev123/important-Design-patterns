@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: ci/cd-image
+  IMAGE_NAME: ci-cd-image
 
 jobs:
   # test:
