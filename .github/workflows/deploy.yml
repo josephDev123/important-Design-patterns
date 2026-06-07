@@ -6,7 +6,7 @@ on:
       - main
 
 env:
-  IMAGE_NAME: my-node-app
+  IMAGE_NAME: design_pattern
 
 jobs:
   # test:
