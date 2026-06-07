@@ -5,8 +5,7 @@ export interface IPublisher {
 }
 
 export class JambNotifierPublisher implements IPublisher {
- 
-  subscribers:ISubscriber[]= [];
+  subscribers: ISubscriber[] = [];
   constructor() {
     this.subscribers = [];
   }
@@ -16,8 +15,6 @@ export class JambNotifierPublisher implements IPublisher {
   }
 
   notify<TData>(whatEverMsg: TData) {
-    this.subscribers.forEach((subscriber) =>
-      subscriber.notify(whatEverMsg)
-    );
+    this.subscribers.forEach((subscriber) => subscriber.notify(whatEverMsg));
   }
 }

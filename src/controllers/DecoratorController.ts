@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { BoldEditor } from "../utils/decoratorPattern/BoldTextDecorator";
-import { EditorConcrete } from "../utils/decoratorPattern/EditorConcrete";
+import { BoldEditor } from "../features/decoratorPattern/BoldTextDecorator";
+import { EditorConcrete } from "../features/decoratorPattern/EditorConcrete";
 
 export class DecoratorController {
   async EditorMessage(req: Request, res: Response) {

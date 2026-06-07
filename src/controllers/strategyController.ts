@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { Sms } from "../utils/strategyPattern/smsStrategy";
-import { strategyBase } from "../utils/strategyPattern/strategyBase";
-import { Email } from "../utils/strategyPattern/emailStrategy";
+import { Sms } from "../features/strategyPattern/smsStrategy";
+import { strategyBase } from "../features/strategyPattern/strategyBase";
+import { Email } from "../features/strategyPattern/emailStrategy";
 
 export class strategyController {
   public async notify(req: Request, res: Response) {

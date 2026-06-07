@@ -3,14 +3,13 @@ export interface ISubscriber {
 }
 
 export class SmsJambSubscriber implements ISubscriber {
-  notify<T>(msg: T){
-   console.log( "sms:",msg);
+  notify<T>(msg: T) {
+    console.log("sms:", msg);
   }
 }
 
-
 export class EmailJambSubscriber implements ISubscriber {
   notify<T>(msg: T) {
-   console.log( "email:",msg);
+    console.log("email:", msg);
   }
 }

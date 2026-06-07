@@ -1,6 +1,6 @@
-import { CreateNoteTask } from "../utils/commandPattern/createNoteTask";
-import { TaskInvoker } from "../utils/commandPattern/taskInvoker";
-import { TaskManager } from "../utils/commandPattern/TaskManager";
+import { CreateNoteTask } from "../features/commandPattern/createNoteTask";
+import { TaskInvoker } from "../features/commandPattern/taskInvoker";
+import { TaskManager } from "../features/commandPattern/TaskManager";
 
 export class CommandController {
   // task
