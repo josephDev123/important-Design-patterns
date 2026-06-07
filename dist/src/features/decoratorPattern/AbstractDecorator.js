@@ -9,19 +9,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecoratorController = void 0;
-const BoldTextDecorator_1 = require("../features/decoratorPattern/BoldTextDecorator");
-const EditorConcrete_1 = require("../features/decoratorPattern/EditorConcrete");
-class DecoratorController {
-    EditorMessage(req, res) {
+exports.abstractDecorator = void 0;
+class abstractDecorator {
+    constructor(ConcreteImp) {
+        this.Editor = ConcreteImp;
+    }
+    setNote() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { content } = req.body;
-            const EditorConcreteImpl = new EditorConcrete_1.EditorConcrete(content);
-            const boldText = new BoldTextDecorator_1.BoldEditor(EditorConcreteImpl);
-            const result = yield boldText.process();
-            res.status(200).json({ msg: result });
-            return;
+            this.Editor.setNote();
+        });
+    }
+    getNote() {
+        return __awaiter(this, void 0, void 0, function* () {
+            return this.Editor.getNote();
         });
     }
 }
-exports.DecoratorController = DecoratorController;
+exports.abstractDecorator = abstractDecorator;

@@ -9,19 +9,28 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecoratorController = void 0;
-const BoldTextDecorator_1 = require("../features/decoratorPattern/BoldTextDecorator");
-const EditorConcrete_1 = require("../features/decoratorPattern/EditorConcrete");
-class DecoratorController {
-    EditorMessage(req, res) {
+exports.EditorConcrete = void 0;
+class EditorConcrete {
+    constructor(note) {
+        this.content = "";
+        this.content = note;
+    }
+    setNote() {
         return __awaiter(this, void 0, void 0, function* () {
-            const { content } = req.body;
-            const EditorConcreteImpl = new EditorConcrete_1.EditorConcrete(content);
-            const boldText = new BoldTextDecorator_1.BoldEditor(EditorConcreteImpl);
-            const result = yield boldText.process();
-            res.status(200).json({ msg: result });
-            return;
+            return this.content;
+        });
+    }
+    getNote() {
+        return __awaiter(this, void 0, void 0, function* () {
+            const note = this.content;
+            return note;
+        });
+    }
+    process() {
+        return __awaiter(this, void 0, void 0, function* () {
+            //send to the database
+            console.log("Processing the note", this.content);
         });
     }
 }
-exports.DecoratorController = DecoratorController;
+exports.EditorConcrete = EditorConcrete;

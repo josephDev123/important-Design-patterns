@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CommandController = void 0;
-const createNoteTask_1 = require("../utils/commandPattern/createNoteTask");
-const taskInvoker_1 = require("../utils/commandPattern/taskInvoker");
-const TaskManager_1 = require("../utils/commandPattern/TaskManager");
+const createNoteTask_1 = require("../features/commandPattern/createNoteTask");
+const taskInvoker_1 = require("../features/commandPattern/taskInvoker");
+const TaskManager_1 = require("../features/commandPattern/TaskManager");
 class CommandController {
     // task
     do() {

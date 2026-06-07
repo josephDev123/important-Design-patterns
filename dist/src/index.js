@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = require("./routes");
+const route_1 = require("./features/ObserverPattern/route");
 dotenv_1.default.config();
 const app = (0, express_1.default)();
 app.use(express_1.default.json());
@@ -13,4 +14,5 @@ app.use("/home", (req, res) => {
     res.send("home");
 });
 app.use("/api", routes_1.Route);
+app.use("/api", route_1.ObserverRoute);
 app.listen(process.env.PORT, () => console.log(`Running on server on port ${process.env.PORT}`));

@@ -10,9 +10,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.strategyController = void 0;
-const smsStrategy_1 = require("../utils/strategyPattern/smsStrategy");
-const strategyBase_1 = require("../utils/strategyPattern/strategyBase");
-const emailStrategy_1 = require("../utils/strategyPattern/emailStrategy");
+const smsStrategy_1 = require("../features/strategyPattern/smsStrategy");
+const strategyBase_1 = require("../features/strategyPattern/strategyBase");
+const emailStrategy_1 = require("../features/strategyPattern/emailStrategy");
 class strategyController {
     notify(req, res) {
         return __awaiter(this, void 0, void 0, function* () {

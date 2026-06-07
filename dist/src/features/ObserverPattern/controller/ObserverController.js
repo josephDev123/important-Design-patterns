@@ -9,19 +9,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.DecoratorController = void 0;
-const BoldTextDecorator_1 = require("../features/decoratorPattern/BoldTextDecorator");
-const EditorConcrete_1 = require("../features/decoratorPattern/EditorConcrete");
-class DecoratorController {
-    EditorMessage(req, res) {
+exports.ObserverController = void 0;
+const JambEventsubscriber_1 = require("../JambEventsubscriber");
+const Subscribers_1 = require("../Subscribers");
+class ObserverController {
+    send(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { content } = req.body;
-            const EditorConcreteImpl = new EditorConcrete_1.EditorConcrete(content);
-            const boldText = new BoldTextDecorator_1.BoldEditor(EditorConcreteImpl);
-            const result = yield boldText.process();
-            res.status(200).json({ msg: result });
-            return;
+            const msg = req.body.msg;
+            const SmsJambSubscriberImpl = new Subscribers_1.SmsJambSubscriber();
+            const EmailJambSubscriberImpl = new Subscribers_1.EmailJambSubscriber();
+            const subscriberImpl = new JambEventsubscriber_1.JambNotifierPublisher();
+            subscriberImpl.subscribe(SmsJambSubscriberImpl);
+            subscriberImpl.subscribe(EmailJambSubscriberImpl);
+            subscriberImpl.notify(msg);
+            res.status(200).json({ msg: "Message sent to subscribers", data: msg });
         });
     }
 }
-exports.DecoratorController = DecoratorController;
+exports.ObserverController = ObserverController;
