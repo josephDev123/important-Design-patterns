@@ -59,7 +59,7 @@ jobs:
           docker push ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
 
   deploy:
-    name: Deploy to Digital Ocean VPS
+    name: Deploy to Digital Ocean VPS.
     needs: build-and-push
     runs-on: ubuntu-latest
 
