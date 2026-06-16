@@ -78,7 +78,7 @@ jobs:
             # -u ${{ github.actor }} \
             # -p ${{ secrets.GITHUB_TOKEN }}
 
-            echo "$GHCR_PAT" | docker login ghcr.io \
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io \
             -u joseph \
             --password-stdin
 
