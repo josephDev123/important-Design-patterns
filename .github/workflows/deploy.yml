@@ -94,7 +94,7 @@ jobs:
 
             echo "Starting new container..."
             docker run -d \
-            --env-file /var/www/myapps/design-pattern/.env
+            --env-file /var/www/myapps/design-pattern/.env \
             --name design-pattern-container \
             -p 3000:3000 \
             --restart unless-stopped \
