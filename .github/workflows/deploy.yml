@@ -58,36 +58,39 @@ jobs:
         run: |
           docker push ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
 
-  # deploy:
-  #   name: Deploy to VPS
-  #   needs: build-and-push
-  #   runs-on: ubuntu-latest
+  deploy:
+    name: Deploy to Digital Ocean VPS
+    needs: build-and-push
+    runs-on: ubuntu-latest
 
-  #   steps:
-  #     - name: Deploy via SSH
-  #       uses: appleboy/ssh-action@v1.2.2
-  #       with:
-  #         host: ${{ secrets.VPS_HOST }}
-  #         username: ${{ secrets.VPS_USERNAME }}
-  #         key: ${{ secrets.VPS_SSH_KEY }}
-  #         port: ${{ secrets.VPS_PORT }}
+    steps:
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.2
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USERNAME }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          # port: ${{ secrets.VPS_PORT }}
 
-  #         script: |
-  #           echo "Logging into GHCR..."
-  #           docker login ghcr.io \
-  #           -u ${{ github.actor }} \
-  #           -p ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            echo "Logging into GHCR..."
+            docker login ghcr.io \
+            -u ${{ github.actor }} \
+            -p ${{ secrets.GITHUB_TOKEN }}
 
-  #           echo "Pulling latest image..."
-  #           docker pull ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
+            echo "change into design pattern directory"
+            cd /var/www/myapps/design-pattern
 
-  #           echo "Stopping old container..."
-  #           docker stop my-app || true
-  #           docker rm my-app || true
+            echo "Pulling latest image..."
+            docker pull ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
 
-  #           echo "Starting new container..."
-  #           docker run -d \
-  #           --name my-app \
-  #           -p 3000:3000 \
-  #           --restart unless-stopped \
-  #           ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
+            echo "Stopping old container..."
+            docker stop design-pattern-container || true
+            docker rm design-pattern-container || true
+
+            echo "Starting new container..."
+            docker run -d \
+            --name design-pattern-container \
+            -p 3000:3000 \
+            --restart unless-stopped \
+            ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
