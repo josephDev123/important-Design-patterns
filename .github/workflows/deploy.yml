@@ -79,23 +79,36 @@ jobs:
             # -p ${{ secrets.GITHUB_TOKEN }}
 
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io \
-            -u joseph \
+            -u josephdev123 \
             --password-stdin
 
             echo "change into design pattern directory"
             cd /var/www/myapps/design-pattern
 
-            echo "Pulling latest image..."
-            docker pull ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
+            # with docker compose
+              echo "Pulling latest image..."
+              docker compose pull
 
-            echo "Stopping old container..."
-            docker stop design-pattern-container || true
-            docker rm design-pattern-container || true
+              echo "Restarting containers..."
+              docker compose up -d
 
-            echo "Starting new container..."
-            docker run -d \
-            --env-file /var/www/myapps/design-pattern/.env \
-            --name design-pattern-container \
-            -p 3000:3000 \
-            --restart unless-stopped \
-            ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
+              #remove old image
+              docker image prune -f
+
+              echo "Deployment completed."
+
+            # without docker compose
+            # echo "Pulling latest image..."
+            # docker pull ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
+
+            # echo "Stopping old container..."
+            # docker stop design-pattern-container || true
+            # docker rm design-pattern-container || true
+
+            # echo "Starting new container..."
+            # docker run -d \
+            # --env-file /var/www/myapps/design-pattern/.env \
+            # --name design-pattern-container \
+            # -p 3000:3000 \
+            # --restart unless-stopped \
+            # ghcr.io/${{ env.REGISTRY_OWNER }}/${{ env.IMAGE_NAME }}:latest
